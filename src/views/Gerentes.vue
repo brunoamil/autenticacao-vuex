@@ -23,6 +23,12 @@ export default {
     this.$http.get('gerentes')
     .then(response => this.gerentes = response)
     .catch(erro => console.log(erro));
+  },
+  beforeRouteEnter(to, from, next){
+    if(!this.$store.state.token){
+      next({ name: 'login'});
+    }
+    next();
   }
 };
 </script>
